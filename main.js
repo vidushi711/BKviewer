@@ -8,13 +8,34 @@ async function startViewer() {
         animation: true,
         shouldAnimate: true
     });
-
     // Load BK building model
     const bkTileset = await Cesium.Cesium3DTileset.fromIonAssetId(2955578);
     viewer.scene.primitives.add(bkTileset);
-
     // Zoom to building
-    viewer.zoomTo(bkTileset);
+    viewer.zoomTo(bkTileset);    
+}
+
+//Dropdown functionality
+async function loadRooms() {
+    const response = await fetch('PATH_TO_YOUR_CSV.csv');
+    const text = await response.text();
+
+    const rows = text.split('\n').slice(1); // skip header row
+    const select = document.getElementById('roomSelect');
+
+    for (let row of rows) {
+        if (row.trim() === "") continue; // skip empty lines
+
+        const [shortName, longName, globalId] = row.split(',');
+
+        const option = document.createElement('option');
+        option.value = globalId.trim();  // Save GlobalId internally
+        option.textContent = `${shortName.trim()} - ${longName.trim()}`;  // Human readable
+        select.appendChild(option);
+    }
 }
 
 startViewer();
+loadRooms();
+
+
