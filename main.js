@@ -2,13 +2,13 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 
 async function startViewer() {
     const viewer = new Cesium.Viewer('cesiumContainer', {
-        terrainProvider: Cesium.createWorldTerrain(),
+        terrainProvider: Cesium.CesiumTerrainProvider.fromIonAssetId(1),
         timeline: true,
         animation: true,
         shouldAnimate: true
     });
 
-    // Load your BK building model
+    // Load BK building model
     const bkTileset = await Cesium.Cesium3DTileset.fromIonAssetId(2955578);
     viewer.scene.primitives.add(bkTileset);
 
