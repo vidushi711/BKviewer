@@ -17,7 +17,7 @@ async function startViewer() {
 
 //Dropdown functionality
 async function loadRooms() {
-    const response = await fetch('bk_rooms.csv');
+    const response = await fetch('./bk_rooms.csv');
     const text = await response.text();
 
     const rows = text.split('\n').slice(1); // skip header row
