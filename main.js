@@ -2,7 +2,7 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 
 async function startViewer() {
     const viewer = new Cesium.Viewer('cesiumContainer', {
-        terrainProvider: Cesium.CesiumTerrainProvider.fromIonAssetId(1),
+        terrainProvider: await Cesium.CesiumTerrainProvider.fromIonAssetId(1),
         timeline: true,
         animation: true,
         shouldAnimate: true
